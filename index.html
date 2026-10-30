@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fil">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EMMES Cabaliwan Extension</title>
+<link rel="icon" href="images/logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--leaf:#3f8f2a;--leaf-d:#2b6a1c;--teal:#35b7ab;--rose:#f4c3c0;--ink:#1d3328;--paper:#fbfaf5;--line:#d9e4d3}
+*{box-sizing:border-box}
+body{margin:0;font:17px/1.6 Nunito,system-ui,sans-serif;color:var(--ink);background:var(--paper)}
+h1,h2,h3{font-family:Fredoka,Nunito,sans-serif;font-weight:600;line-height:1.2;margin:0 0 .5em}
+a{color:var(--leaf-d)}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+header{display:flex;align-items:center;gap:12px;padding:10px 20px;background:var(--leaf);color:#fff;position:sticky;top:0;z-index:5}
+header img{width:46px;height:46px;border-radius:50%;background:#fff}
+header b{font:600 1.15rem Fredoka,sans-serif;flex:1}
+nav a{color:#fff;text-decoration:none;margin-left:14px;font-weight:700}
+.hero{position:relative;min-height:56vh;display:flex;align-items:flex-end;background:url(images/school.jpg) center/cover}
+.hero div{width:100%;padding:60px 20px 28px;background:linear-gradient(transparent,rgba(20,45,28,.88));color:#fff}
+.hero h1{font-size:clamp(1.8rem,5vw,3rem);max-width:780px}
+.hero p{margin:0;max-width:620px}
+section{max-width:1000px;margin:0 auto;padding:44px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:20px}
+.t{text-align:center}
+.t img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top;border-radius:14px;border:4px solid var(--rose);background:#eee}
+.t b{display:block;margin-top:8px}.t span{font-size:.92rem;color:#4a6355}
+.news{border-left:6px solid var(--teal);padding:4px 0 4px 16px;margin-bottom:18px}
+.news small{color:#4a6355}
+.band{background:#eef5e9;border-block:1px solid var(--line)}
+form,.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;max-width:440px}
+label{display:block;font-weight:700;margin-top:12px}
+select,input{width:100%;padding:11px;font:inherit;border:1px solid #9bb59a;border-radius:8px}
+button{font:600 1rem Fredoka,sans-serif;padding:11px 22px;border:0;border-radius:999px;background:var(--leaf);color:#fff;cursor:pointer;margin-top:16px}
+button:hover{background:var(--leaf-d)}button.alt{background:#fff;color:var(--leaf-d);border:2px solid var(--leaf)}
+#msg{color:#a3262a;min-height:1.4em;margin-top:10px;font-weight:700}
+.folder{background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:14px;overflow:hidden}
+.folder summary{display:flex;gap:14px;align-items:center;padding:12px 16px;cursor:pointer;list-style:none}
+.folder img{width:60px;height:72px;object-fit:cover;object-position:top;border-radius:8px}
+.folder .in{padding:4px 18px 16px 20px;border-top:1px solid var(--line)}
+.folder ul{margin:8px 0;padding-left:20px}
+footer{background:var(--ink);color:#e8f1e5;text-align:center;padding:26px 20px}
+#welcome{position:fixed;inset:0;z-index:20;display:grid;place-items:center;text-align:center;padding:24px;background:linear-gradient(160deg,var(--leaf) 0%,var(--teal) 100%);color:#fff}
+#welcome img{width:min(46vw,210px);border-radius:50%;background:#fff;border:6px solid #fff}
+#welcome h1{font-size:clamp(1.6rem,6vw,2.6rem);margin-top:18px}
+#welcome button{background:#fff;color:var(--leaf-d);font-size:1.15rem}
+#welcome.out{display:none}
+</style>
+</head>
+<body>
+<div id="welcome">
+  <div>
+    <img src="images/logo.jpg" alt="Logo ng EMMES Cabaliwan Extension">
+    <h1>Maligayang pagdating sa<br>EMMES Cabaliwan Extension</h1>
+    <p>Bachawan, San Agustin, Romblon</p>
+    <button id="enter">Pumasok</button>
+  </div>
+</div>
+
+<header>
+  <img src="images/logo.jpg" alt="">
+  <b>EMMES Cabaliwan Extension</b>
+  <nav><a href="#guro">Mga Guro</a><a href="#balita">Balita</a><a href="#folder">Folder ng Guro</a><a href="#contact">Contact</a></nav>
+</header>
+
+<div class="hero"><div>
+  <h1>Esteban M. Madrona Elementary School, Cabaliwan Extension</h1>
+  <p>Paaralan sa Bachawan, San Agustin, Romblon. Itinatag 2013.</p>
+</div></div>
+
+<section id="guro">
+  <h2>Mga Guro</h2>
+  <div class="grid" id="teachers"><p>Kinukuha ang listahan...</p></div>
+</section>
+
+<div class="band"><section id="balita">
+  <h2>Mga Balita at Anunsyo</h2>
+  <div id="news"><p>Kinukuha ang mga balita...</p></div>
+</section></div>
+
+<section id="folder">
+  <h2>Folder ng mga Guro</h2>
+  <div id="loginBox">
+    <p>Para sa mga guro ng paaralan lamang. Piliin ang pangalan at ilagay ang inyong PIN.</p>
+    <form id="login">
+      <label for="who">Pangalan</label><select id="who" required></select>
+      <label for="pin">PIN</label><input id="pin" type="password" inputmode="numeric" autocomplete="off" required>
+      <button>Buksan ang folder</button>
+      <div id="msg" role="alert"></div>
+    </form>
+  </div>
+  <div id="folders" hidden>
+    <button class="alt" id="logout">Mag-log out</button>
+    <div id="fl" style="margin-top:18px"></div>
+  </div>
+</section>
+
+<footer id="contact">
+  <b>EMMES Cabaliwan Extension</b><br>
+  Cabaliwan, Bachawan, San Agustin, Romblon<br>
+  Telepono: <a style="color:#bfe6b8" href="tel:09380757805">0938 075 7805</a>
+</footer>
+
+<script>
+const API = "PASTE_APPS_SCRIPT_URL_HERE";
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const img = p => p ? "images/" + encodeURIComponent(p) : "images/logo.jpg";
+
+async function call(body){
+  const r = await fetch(API, {method:"POST", body:JSON.stringify(body)});
+  return r.json();
+}
+
+$("enter").onclick = () => $("welcome").classList.add("out");
+
+async function loadPublic(){
+  try{
+    const d = await call({action:"public"});
+    $("teachers").innerHTML = d.teachers.map(t =>
+      `<div class="t"><img src="${img(t.photo)}" alt="${esc(t.name)}"><b>${esc(t.name)}</b><span>${esc(t.position)}</span></div>`).join("") || "<p>Wala pang nakalistang guro.</p>";
+    $("who").innerHTML = d.teachers.map(t => `<option>${esc(t.name)}</option>`).join("");
+    $("news").innerHTML = d.news.map(n =>
+      `<div class="news"><small>${esc(n.date)}</small><h3>${esc(n.title)}</h3><p>${esc(n.text)}</p></div>`).join("") || "<p>Wala pang anunsyo.</p>";
+  }catch(e){
+    $("teachers").innerHTML = $("news").innerHTML = "<p>Hindi makuha ang datos. Tiyaking tama ang API link sa index.html.</p>";
+  }
+}
+
+$("login").onsubmit = async e => {
+  e.preventDefault(); $("msg").textContent = "Sinusuri...";
+  try{
+    const d = await call({action:"login", name:$("who").value, pin:$("pin").value});
+    if(!d.ok){ $("msg").textContent = d.error; return; }
+    $("pin").value = ""; $("msg").textContent = "";
+    $("fl").innerHTML = d.folders.map((f,i) => `
+      <details class="folder" ${d.folders.length===1?"open":""}>
+        <summary><img src="${img(f.photo)}" alt=""><span><b>${esc(f.name)}</b><br>${esc(f.position)}</span></summary>
+        <div class="in">
+          ${f.drive ? `<p><a href="${esc(f.drive)}" target="_blank" rel="noopener">Buksan ang Google Drive folder</a></p>` : ""}
+          <ul>${f.files.map(x => `<li><a href="${esc(x.link)}" target="_blank" rel="noopener">${esc(x.title)}</a></li>`).join("") || "<li>Wala pang file.</li>"}</ul>
+        </div>
+      </details>`).join("");
+    $("loginBox").hidden = true; $("folders").hidden = false;
+  }catch(err){ $("msg").textContent = "May problema sa koneksyon. Subukan ulit."; }
+};
+
+$("logout").onclick = () => { $("fl").innerHTML = ""; $("folders").hidden = true; $("loginBox").hidden = false; };
+loadPublic();
+</script>
+</body>
+</html>
